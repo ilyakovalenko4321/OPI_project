@@ -34,11 +34,10 @@ public class GameCowsLogicServiceImpl implements GameCowsLogicService {
         while (true) {
             System.out.println("Введите слово");
             String userWord = scanner.nextLine();
-            System.out.flush();
             try {
                 wordService.wordValidation(userWord);
                 if (!isValid(userWord, wordLength)) {
-                    continue;
+                    throw new RuntimeException();
                 }
                 if (userWord.equalsIgnoreCase("/exit")) {
                     return -1;
@@ -51,7 +50,7 @@ public class GameCowsLogicServiceImpl implements GameCowsLogicService {
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                scanner.nextLine();
+                //scanner.nextLine();
             }
         }
         return 1;

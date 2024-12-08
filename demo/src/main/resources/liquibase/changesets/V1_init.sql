@@ -1,5 +1,16 @@
-CREATE TABLE IF NOT EXISTS words
-(
-    id   bigint PRIMARY KEY,
-    word varchar(255) not null unique
+-- Шаг 1. Создание таблицы, если её ещё нет
+CREATE TABLE IF NOT EXISTS words (
+                                     id   BIGSERIAL PRIMARY KEY,  -- Автоматическая генерация ID
+                                     word VARCHAR(255) NOT NULL  -- Колонка для слова
 );
+
+-- Шаг 2. Очистка таблицы перед загрузкой (опционально)
+TRUNCATE TABLE words;
+
+-- Шаг 3. Загрузка данных из файла (ид автоматически генерируется)
+COPY words (word)
+    FROM 'C:/temp/russian_words.txt'
+    WITH (
+    FORMAT TEXT,       -- Текстовый формат файла
+    ENCODING 'UTF8'    -- Кодировка файла
+    );
