@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class GameCowsLogicServiceImpl implements GameCowsLogicService {
 
     private final WordServiceImpl wordService;
+    private final HelperServiceImpl helperService;
 
     public int play() {
         Scanner scanner = new Scanner(System.in);
@@ -25,6 +26,7 @@ public class GameCowsLogicServiceImpl implements GameCowsLogicService {
                 break;
             } catch (Exception e) {
                 System.out.println("Вы должны ввести число от 0 до 255");
+                scanner.nextLine();
             }
         }
         scanner.nextLine();
@@ -41,7 +43,7 @@ public class GameCowsLogicServiceImpl implements GameCowsLogicService {
                     continue;
                 }
                 if (userWord.equalsIgnoreCase("/exit")) {
-                    return -1;
+                    System.exit(0);
                 }
                 int[] resultArray = getBullsCOws(userWord, programWord.getWord());
                 if (!Arrays.equals(resultArray, new int[]{4, 4})) {

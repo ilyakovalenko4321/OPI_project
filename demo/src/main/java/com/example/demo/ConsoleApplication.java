@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @RequiredArgsConstructor
 public class ConsoleApplication implements CommandLineRunner {
 
+
     private final GameCowsLogicServiceImpl gameCowsLogicService;
 
     public static void main(String[] args) {
@@ -22,13 +23,11 @@ public class ConsoleApplication implements CommandLineRunner {
         // Основная логика консольного приложения
         System.out.println("Приложение запущено!");
         // Например, вызов сервисов или обработка данных
-        while(true){
+        while(true) {
             int result_code = gameCowsLogicService.play();
-            if(result_code == -1){
+            if (result_code == -1) {
                 break;
             }
         }
-
-
     }
 }
